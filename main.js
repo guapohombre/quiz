@@ -1,4 +1,5 @@
 const question = document.querySelector(".question");
+const stop = document.querySelector(".stop");
 
 const questions = [
   { id: 0, question: "Why do you want to be part of YC?" },
@@ -88,3 +89,5 @@ const questionInterval = setInterval(() => {
     clearInterval(questionInterval);
   }
 }, 3000);
+
+stop.addEventListener("click", () => clearInterval(questionInterval));
