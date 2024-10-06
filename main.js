@@ -1,5 +1,6 @@
 const question = document.querySelector(".question");
-const stop = document.querySelector(".stop");
+const button = document.querySelector(".stop");
+const count = document.querySelector(".count");
 
 const questions = [
   { id: 0, question: "Why do you want to be part of YC?" },
@@ -69,25 +70,73 @@ const questions = [
   },
 ];
 
+//array that stores all displayed questions
 const completedQuestions = [];
 
-question.textContent = "I Love Lucy";
+//generate random integer that is between 0 and the number of questions
+function getId() {
+  return Math.floor(Math.random() * questions.length);
+}
 
-const questionInterval = setInterval(() => {
-  let questionId;
+//get random id from questions array
+let questionId = getId();
 
+//set current question to question matching id
+let currentQuestion = questions[questionId].question;
+
+//add id of current question into completed questions array to prevent question from being asked again in this session
+completedQuestions.push(questionId);
+
+//display current question
+question.textContent = currentQuestion;
+let questionsInterval;
+
+count.textContent = `${completedQuestions.length} of ${questions.length} total questions`;
+
+// Get question that hasn't already been displayed
+function getCurrentQuestion() {
   do {
-    questionId = Math.floor(Math.random() * questions.length);
+    questionId = getId();
   } while (completedQuestions.includes(questionId));
 
-  question.textContent = questions[questionId].question;
-  completedQuestions.push(questions[questionId].id);
-  console.log(completedQuestions);
+  currentQuestion = questions[questionId].question;
+  question.textContent = currentQuestion;
+  completedQuestions.push(questionId);
 
-  if (completedQuestions.length >= questions.length) {
-    console.log("clearing interval");
-    clearInterval(questionInterval);
+  count.textContent = `${completedQuestions.length} of ${questions.length} total questions`;
+}
+
+//display question every x seconds
+function runQuestions() {
+  questionsInterval = setInterval(() => {
+    getCurrentQuestion();
+
+    if (completedQuestions.length >= questions.length) {
+      clearInterval(questionsInterval);
+      completedQuestions.length = 0;
+      button.textContent = "Start";
+    }
+  }, 10000);
+}
+
+//Manage button events
+
+button.addEventListener("click", (e) => {
+  buttonText = e.target.textContent;
+  if (buttonText === "Start") {
+    getCurrentQuestion();
+    runQuestions();
+    e.target.textContent = "Pause";
   }
-}, 3000);
 
-stop.addEventListener("click", () => clearInterval(questionInterval));
+  if (buttonText === "Pause") {
+    e.target.textContent = "Resume";
+    clearInterval(questionsInterval);
+  }
+
+  if (buttonText === "Resume") {
+    e.target.textContent = "Pause";
+    getCurrentQuestion();
+    runQuestions();
+  }
+});
