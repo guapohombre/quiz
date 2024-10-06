@@ -1,6 +1,7 @@
 const question = document.querySelector(".question");
 const button = document.querySelector(".stop");
 const count = document.querySelector(".count");
+const skip = document.querySelector(".skip");
 
 const questions = [
   { id: 0, question: "Why do you want to be part of YC?" },
@@ -112,9 +113,12 @@ function runQuestions() {
     getCurrentQuestion();
 
     if (completedQuestions.length >= questions.length) {
+      //>=questions.length
       clearInterval(questionsInterval);
       completedQuestions.length = 0;
       button.textContent = "Start";
+      skip.classList.toggle("hide");
+      count.textContent = `0 of ${questions.length} total questions`;
     }
   }, 10000);
 }
@@ -127,16 +131,40 @@ button.addEventListener("click", (e) => {
     getCurrentQuestion();
     runQuestions();
     e.target.textContent = "Pause";
+    skip.classList.toggle("hide");
   }
 
   if (buttonText === "Pause") {
     e.target.textContent = "Resume";
     clearInterval(questionsInterval);
+    skip.classList.toggle("hide");
   }
 
   if (buttonText === "Resume") {
     e.target.textContent = "Pause";
     getCurrentQuestion();
+    runQuestions();
+    skip.classList.toggle("hide");
+  }
+});
+
+skip.addEventListener("click", (e) => {
+  clearInterval(questionsInterval);
+  let questionId = getId();
+
+  let currentQuestion = questions[questionId].question;
+  completedQuestions.push(questionId);
+  question.textContent = currentQuestion;
+
+  count.textContent = `${completedQuestions.length} of ${questions.length} total questions`;
+  if (completedQuestions.length >= questions.length) {
+    //>=questions.length
+    clearInterval(questionsInterval);
+    completedQuestions.length = 0;
+    button.textContent = "Start";
+    skip.classList.toggle("hide");
+    count.textContent = `0 of ${questions.length} total questions`;
+  } else {
     runQuestions();
   }
 });
