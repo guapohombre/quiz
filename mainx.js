@@ -1,0 +1,411 @@
+const question = document.querySelector(".question");
+const button = document.querySelector(".stop");
+const count = document.querySelector(".count");
+const skip = document.querySelector(".skip");
+const answer = document.querySelector(".answer");
+
+// const questions = [
+//   {
+//     id: 0,
+//     question: "Why do you want to be part of YC?",
+//     owner: "Laura",
+//     answer: "0 For the money and status",
+//   },
+//   {
+//     id: 1,
+//     question: "Why is your product priced the way it is?",
+//     owner: "Suzanne",
+//     answer:
+//       "1 We look at our margin goals and what we think the market will bear based on competitor pricing",
+//   },
+//   {
+//     id: 2,
+//     question:
+//       "If your startup succeeds, what additional areas could you expand into?",
+//     owner: "Ben",
+//     answer: "2 All women's apparel that requires breast support and shapewear",
+//   },
+//   {
+//     id: 3,
+//     question: "What's the biggest mistake you have made?",
+//     owner: "Tom",
+//     answer:
+//       "3 Thinking that other people were motivated by the same things I was and thought like I do",
+//   },
+//   {
+//     id: 4,
+//     question: "What will be your biggest challenge two years from now?",
+//     owner: "Laura",
+//     answer: "4 TBD",
+//   },
+//   {
+//     id: 5,
+//     question: "Who are your competitors?",
+//     owner: "Suzanne",
+//     answer: "5 TBD",
+//   },
+//   {
+//     id: 6,
+//     question: "What makes your product different from existing options?",
+//     owner: "Ben",
+//     answer: "6 TBD",
+//   },
+//   {
+//     id: 7,
+//     question: "Who would you hire, or how would you add to your team?",
+//     owner: "Tom",
+//     answer: "7 TBD",
+//   },
+//   {
+//     id: 8,
+//     question: "How are you working to expand geographically?",
+//     owner: "Laura",
+//     answer: "8 TBD",
+//   },
+//   {
+//     id: 9,
+//     question: "What do you understand about your customers?",
+//     owner: "Suzanne",
+//     answer: "9 TBD",
+//   },
+//   {
+//     id: 10,
+//     question: "How will you make money?",
+//     owner: "Ben",
+//     answer: "10 TBD",
+//   },
+//   {
+//     id: 11,
+//     question: "Why isn't someone already doing this?",
+//     owner: "Tom",
+//     answer: "11 TBD",
+//   },
+//   {
+//     id: 12,
+//     question: "What do you know about this space/product others don't know?",
+//     owner: "Laura",
+//     answer: "12 TBD",
+//   },
+//   {
+//     id: 13,
+//     question: "What is the next step with the product evolution?",
+//     owner: "Laura",
+//     answer: "13 TBD",
+//   },
+//   {
+//     id: 14,
+//     question: "How do you know customers need what you're making?",
+//     owner: "Laura",
+//     answer: "14 TBD",
+//   },
+//   {
+//     id: 15,
+//     question: "Who would be your next hire?",
+//     owner: "Laura",
+//     answer: "15 TBD",
+//   },
+//   {
+//     id: 16,
+//     question: "How long can you go before funding?",
+//     owner: "Laura",
+//     answer: "16 TBD",
+//   },
+//   {
+//     id: 17,
+//     question:
+//       "Someone just showed us an idea like this right before you guys. I don't like it. What else do you have?",
+//     owner: "Laura",
+//     answer: "17 TBD",
+//   },
+//   {
+//     id: 18,
+//     question: "Will you incorporate as a US company?",
+//     owner: "Laura",
+//     answer: "18 TBD",
+//   },
+//   {
+//     id: 19,
+//     question: "How will you get users?",
+//     owner: "Laura",
+//     answer: "19 TBD",
+//   },
+//   {
+//     id: 20,
+//     question: "Will your team stick at this?",
+//     owner: "Laura",
+//     answer: "20 TBD",
+//   },
+//   {
+//     id: 21,
+//     question: "Have you raised funding?",
+//     owner: "Laura",
+//     answer: "21 TBD",
+//   },
+//   {
+//     id: 22,
+//     question: "What is your burn rate?",
+//     owner: "Laura",
+//     answer: "22 TBD",
+//   },
+//   {
+//     id: 23,
+//     question: "How do you know people want this?",
+//     owner: "Laura",
+//     answer: "23 TBD",
+//   },
+//   {
+//     id: 24,
+//     question: "What's the funniest thing that has happened to you?",
+//     owner: "Laura",
+//     answer: "24 TBD",
+//   },
+//   {
+//     id: 25,
+//     question: "Where will you locate?",
+//     owner: "Laura",
+//     answer: "25 TBD",
+//   },
+//   {
+//     id: 26,
+//     question: "Tell us something surprising you have done?",
+//     owner: "Laura",
+//     answer: "26 TBD",
+//   },
+//   {
+//     id: 27,
+//     question: "How are you meeting customers?",
+//     owner: "Laura",
+//     answer: "27 TBD",
+//   },
+//   {
+//     id: 28,
+//     question: "What obstacles will you face and how will you overcome them?",
+//     owner: "Laura",
+//     answer: "28 TBD",
+//   },
+//   {
+//     id: 29,
+//     question: "What else have you created together?",
+//     owner: "Laura",
+//     answer: "29 TBD",
+//   },
+//   {
+//     id: 30,
+//     question: "How will customers and/or users find out about you?",
+//     owner: "Laura",
+//     answer: "30 TBD",
+//   },
+//   {
+//     id: 31,
+//     question: "What's new about what you make?",
+//     owner: "Laura",
+//     answer: "31 TBD",
+//   },
+//   {
+//     id: 32,
+//     question: "Who would use your product?",
+//     owner: "Laura",
+//     answer: "32 TBD",
+//   },
+//   {
+//     id: 33,
+//     question: "Who needs what you're making?",
+//     owner: "Laura",
+//     answer: "33 TBD",
+//   },
+//   {
+//     id: 34,
+//     question: "What products are you going to build first?",
+//     owner: "Laura",
+//     answer: "34 TBD",
+//   },
+//   {
+//     id: 35,
+//     question: "Why will you succeed?",
+//     owner: "Laura",
+//     answer:
+//       "35 We will succeed because customers want better breast support, we have a good team, and we are willing to listen and learn",
+//   },
+//   {
+//     id: 36,
+//     question: "What is your user growth rate?",
+//     owner: "Laura",
+//     answer: "36 TBD",
+//   },
+//   {
+//     id: 37,
+//     question: "Who is the boss?",
+//     owner: "Tom",
+//     answer:
+//       "37 For important decisions, the buck stops with Laura.  We provide input, and Laura makes the executive decision",
+//   },
+//   {
+//     id: 38,
+//     question: "What systems have you hacked?",
+//     owner: "Laura",
+//     answer: "38 TBD",
+//   },
+//   {
+//     id: 39,
+//     question: "What domain expertise do you have?",
+//     owner: "Laura",
+//     answer: "39 TBD",
+//   },
+//   {
+//     id: 40,
+//     question:
+//       "What are the key things about your field that outsiders don't understand?",
+//     owner: "Laura",
+//     answer: "40 TBD",
+//   },
+// ];
+
+const url = "https://guapohombre.github.io/quizData/quiz.json";
+
+async function getData(url) {
+  const request = await fetch(url);
+  const data = await request.json();
+  const questions = data;
+  loadQuestions(questions.questions);
+}
+
+//generate random integer that is between 0 and the number of questions
+function getId(questions) {
+  return Math.floor(Math.random() * questions.length);
+}
+
+function loadQuestions(questions) {
+  //array that stores all displayed questions
+  const completedQuestions = [];
+
+  console.log(questions);
+
+  //get random id from questions array
+  let questionId = getId(questions);
+
+  console.log(questionId);
+
+  //set current question to question matching id
+  let currentQuestion = questions[questionId].question;
+  let currentOwner = questions[questionId].owner;
+  let currentAnswer = questions[questionId].answer;
+
+  //add id of current question into completed questions array to prevent question from being asked again in this session
+  completedQuestions.push(questionId);
+
+  //display current question
+  question.textContent = currentQuestion;
+  answer.textContent = currentAnswer;
+  let questionsInterval;
+
+  count.textContent = `${completedQuestions.length} of ${questions.length} total questions`;
+
+  button.addEventListener("click", (e) => {
+    buttonText = e.target.textContent;
+    if (buttonText === "Start") {
+      getCurrentQuestion(questions);
+      runQuestions(questions);
+      e.target.textContent = "Pause";
+      skip.classList.toggle("hide");
+    }
+
+    if (buttonText === "Pause") {
+      e.target.textContent = "Resume";
+      clearInterval(questionsInterval);
+      skip.classList.toggle("hide");
+    }
+
+    if (buttonText === "Resume") {
+      e.target.textContent = "Pause";
+      getCurrentQuestion(questions);
+      runQuestions(questions);
+      skip.classList.toggle("hide");
+    }
+  });
+}
+
+getData(url);
+
+// Get question that hasn't already been displayed
+function getCurrentQuestion(questions) {
+  do {
+    questionId = getId();
+  } while (completedQuestions.includes(questionId));
+
+  console.log(questionId);
+
+  currentQuestion = questions[questionId].question;
+  currentAnswer = questions.at(questionId).answer;
+
+  console.log(currentAnswer);
+
+  question.textContent = currentQuestion;
+  answer.textContent = currentAnswer;
+  completedQuestions.push(questionId);
+
+  count.textContent = `${completedQuestions.length} of ${questions.length} total questions`;
+}
+
+//display question every x seconds
+function runQuestions(questions) {
+  questionsInterval = setInterval(() => {
+    getCurrentQuestion();
+
+    if (completedQuestions.length >= questions.length) {
+      //>=questions.length
+      clearInterval(questionsInterval);
+      completedQuestions.length = 0;
+      button.textContent = "Start";
+      skip.classList.toggle("hide");
+      count.textContent = `0 of ${questions.length} total questions`;
+    }
+  }, 10000);
+}
+
+//Manage button events
+
+button.addEventListener("click", (e) => {
+  buttonText = e.target.textContent;
+  if (buttonText === "Start") {
+    getCurrentQuestion();
+    runQuestions();
+    e.target.textContent = "Pause";
+    skip.classList.toggle("hide");
+  }
+
+  if (buttonText === "Pause") {
+    e.target.textContent = "Resume";
+    clearInterval(questionsInterval);
+    skip.classList.toggle("hide");
+  }
+
+  if (buttonText === "Resume") {
+    e.target.textContent = "Pause";
+    getCurrentQuestion();
+    runQuestions();
+    skip.classList.toggle("hide");
+  }
+});
+
+skip.addEventListener("click", (e) => {
+  clearInterval(questionsInterval);
+  let questionId = getId();
+
+  let currentQuestion = questions[questionId].question;
+  let currentAnswer = questions.at(questionId).answer;
+  completedQuestions.push(questionId);
+  question.textContent = currentQuestion;
+  answer.textContent = currentAnswer;
+
+  count.textContent = `${completedQuestions.length} of ${questions.length} total questions`;
+  if (completedQuestions.length >= questions.length) {
+    //>=questions.length
+    clearInterval(questionsInterval);
+    completedQuestions.length = 0;
+    button.textContent = "Start";
+    skip.classList.toggle("hide");
+    count.textContent = `0 of ${questions.length} total questions`;
+  } else {
+    runQuestions();
+  }
+});

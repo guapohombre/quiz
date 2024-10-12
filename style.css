@@ -61,6 +61,14 @@ main {
   /* padding: 5%; */
 }
 
+.selectUser {
+  display: inline;
+}
+
+.selectUser li {
+  display: inline;
+}
+
 .countContainer {
   /* border: 1px solid red; */
   position: absolute;
@@ -106,6 +114,7 @@ main {
   flex-wrap: wrap;
   margin: 10% 30% 0 3rem;
   color: rgba(0 0 0/0.7);
+  z-index: 100;
 }
 
 .questionHeader {
@@ -114,9 +123,11 @@ main {
   /* border: 1px solid black; */
   width: 100%;
   color: hsl(16, 29%, 60%);
+  z-index: 100;
 }
 
-.question {
+.question,
+.answer {
   /* border: 1px solid black; */
   width: 100%;
 
