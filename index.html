@@ -9,22 +9,13 @@
   </head>
   <body>
     <main>
-      <header>
-        <ul class="selectUser">
-          <li>All</li>
-          <li>Ben</li>
-          <li>Laura</li>
-          <li>Suze</li>
-          <li>Tom</li>
-        </ul>
-      </header>
       <div class="questionContainer">
         <h1 class="questionHeader">Investor Questions</h1>
         <p class="question"></p>
       </div>
       <div class="questionContainer">
-        <h1 class="questionHeader">Answer</h1>
-        <p class="answer"></p>
+        <h1 class="answerHeader">Click to show answer</h1>
+        <p class="answer hide"></p>
       </div>
 
       <div class="bra-container">
@@ -40,9 +31,18 @@
         <button class="stop btn">Start</button>
         <button class="skip btn hide">Skip</button>
       </div>
-      <div class="countContainer">
-        <p class="count">Question 1 of 40</p>
-      </div>
+      <footer>
+        <ul class="selectUser">
+          <li><button class="btn-user btn-user-selected">All</button></li>
+          <li><button class="btn-user">Ben</button></li>
+          <li><button class="btn-user">Laura</button></li>
+          <li><button class="btn-user">Suze</button></li>
+          <li><button class="btn-user">Tom</button></li>
+        </ul>
+        <div class="countContainer">
+          <p class="count">Question 1 of 40</p>
+        </div>
+      </footer>
     </main>
   </body>
 </html>
