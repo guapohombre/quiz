@@ -137,9 +137,10 @@ footer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 10% 30% 0 3rem;
+  margin: 1rem 1rem 2rem 1rem;
   color: rgba(0 0 0/0.7);
   z-index: 100;
+  /* border: 1px solid red; */
 }
 
 .questionHeader,
@@ -152,13 +153,19 @@ footer {
   z-index: 100;
 }
 
-.question,
-.answer {
+.question {
   /* border: 1px solid black; */
   width: 100%;
 
   font-weight: bold;
   font-size: 2rem;
+  text-align: left;
+}
+
+.answer {
+  font-size: 1.5rem;
+  font-weight: 500;
+  width: 100%;
   text-align: left;
 }
 

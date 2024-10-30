@@ -104,15 +104,18 @@ function addListeners() {
 //function to get data and add event listeners
 async function getData(url) {
   try {
-    const request = await fetch(url);
+    ``;
+    const request = await fetch(url, { cache: "no-store" });
+    // console.log("successful fetch");
     const data = await request.json();
+    // console.log(data);
     allQuestions = data.questions;
     questions = filterQuestions(allQuestions);
 
     addListeners();
     getQuestion();
-  } catch {
-    throw new Error("There was a problem getting the data");
+  } catch (e) {
+    throw new Error(e);
   }
 }
 
